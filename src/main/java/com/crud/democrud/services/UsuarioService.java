@@ -4,41 +4,95 @@ import com.crud.democrud.models.UsuarioModel;
 import com.crud.democrud.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
+/**
+ * Clase tipo Servicio para el manejo de Usuarios
+ *
+ * @author Ricardo Ortega <tattortega.28@gmail.com>
+ * @version 1.0.0 2022-06-08
+ * @since 1.0.0
+ */
 @Service
 public class UsuarioService {
-    @Autowired
+    /**
+     * Repositorio de Usuario
+     */
     UsuarioRepository usuarioRepository;
-    
-    public ArrayList<UsuarioModel> obtenerUsuarios(){
-        return (ArrayList<UsuarioModel>) usuarioRepository.findAll();
+
+    /**
+     * Método para obtener todos los usuarios
+     *
+     * @return List
+     */
+    @Transactional(readOnly = true)
+    public List<UsuarioModel> getUsers() {
+        return (List<UsuarioModel>) usuarioRepository.findAll();
     }
 
-    public UsuarioModel guardarUsuario(UsuarioModel usuario){
-        return usuarioRepository.save(usuario);
-    }
-
-    public Optional<UsuarioModel> obtenerPorId(Long id){
+    /**
+     * Método para obtener usuario por ID
+     *
+     * @param id Long
+     * @return Optional
+     */
+    @Transactional(readOnly = true)
+    public Optional<UsuarioModel> getById(Long id) {
         return usuarioRepository.findById(id);
     }
 
+    /**
+     * Método para guardar un usuario
+     *
+     * @param usuario UsuarioModel
+     * @return UsuarioModel
+     */
+    @Transactional
+    public UsuarioModel saveUser(UsuarioModel usuario) {
+        return usuarioRepository.save(usuario);
+    }
 
-    public ArrayList<UsuarioModel>  obtenerPorPrioridad(Integer prioridad) {
+    /**
+     * Método para obtener usuarios por prioridad
+     *
+     * @param prioridad Integer
+     * @return List
+     */
+    @Transactional(readOnly = true)
+    public List<UsuarioModel> getByPriority(Integer prioridad) {
         return usuarioRepository.findByPrioridad(prioridad);
     }
 
-    public boolean eliminarUsuario(Long id) {
-        try{
+    /**
+     * Método para actualizar un usuario
+     *
+     * @param id      Long
+     * @param usuario UsuarioModel
+     * @return UsuarioModel
+     */
+    @Transactional
+    public UsuarioModel updateUser(Long id, UsuarioModel usuario) {
+        usuario.setId(id);
+        return usuarioRepository.save(usuario);
+    }
+
+    /**
+     * Método para eliminar un usuario
+     *
+     * @param id Long
+     * @return boolean
+     */
+    @Transactional
+    public boolean deleteUser(Long id) {
+        try {
             usuarioRepository.deleteById(id);
             return true;
-        }catch(Exception err){
+        } catch (Exception err) {
             return false;
         }
     }
 
-
-    
 }
