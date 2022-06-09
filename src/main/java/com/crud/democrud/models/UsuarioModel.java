@@ -1,11 +1,22 @@
 package com.crud.democrud.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Entidad del Usuario - ORM
+ *
+ * @author Edgar Morillo <edgar.morillo@sofka.com.co>
+ * @version 1.0.0 2022-06-08
+ * @since 1.0.0
+ */
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(name = "usuario")
 public class UsuarioModel {
 
@@ -24,50 +35,22 @@ public class UsuarioModel {
             fetch = FetchType.EAGER,
             cascade = CascadeType.REMOVE
     )
-    @   JsonManagedReference
-    private List<UsuarioRolModel> usuarioRols;
+    @JsonManagedReference
+    private List<UsuarioRolModel> usuarioRoles;
 
-    //Constructors
-    public UsuarioModel() {
 
-    }
+    /**
+     * Constructor con parámetros
+     *
+     * @param nombre    String
+     * @param email     String
+     * @param prioridad Integer
+     */
     public UsuarioModel(String nombre, String email, Integer prioridad) {
         this.nombre = nombre;
         this.email = email;
         this.prioridad = prioridad;
     }
 
-    //Getters and Setters
-    public void setPrioridad(Integer prioridad) {
-        this.prioridad = prioridad;
-    }
-
-    public Integer getPrioridad() {
-        return prioridad;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
 }
