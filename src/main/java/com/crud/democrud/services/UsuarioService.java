@@ -21,6 +21,7 @@ public class UsuarioService {
     /**
      * Repositorio de Usuario
      */
+    @Autowired
     UsuarioRepository usuarioRepository;
 
     /**

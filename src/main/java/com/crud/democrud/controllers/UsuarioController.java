@@ -3,6 +3,7 @@ package com.crud.democrud.controllers;
 import com.crud.democrud.models.UsuarioModel;
 import com.crud.democrud.services.UsuarioService;
 import com.crud.democrud.utility.Response;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,7 @@ public class UsuarioController {
     /**
      * Servicio para el manejo del Usuario
      */
+    @Autowired
     UsuarioService usuarioService;
     /**
      * Variable para el manejo de las respuestas de las API

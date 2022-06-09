@@ -26,6 +26,7 @@ public class UsuarioRolController {
     /**
      * Servicio para el manejo del Rol
      */
+    @Autowired
     UsuarioRolService usuarioRolService;
     /**
      * Variable para el manejo de las respuestas de las API

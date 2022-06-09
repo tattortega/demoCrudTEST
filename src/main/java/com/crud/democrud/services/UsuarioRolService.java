@@ -22,6 +22,7 @@ public class UsuarioRolService {
     /**
      * Repositorio de Rol
      */
+    @Autowired
     UsuarioRolRepository usuarioRolRepository;
 
     /**
