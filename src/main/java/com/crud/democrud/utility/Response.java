@@ -3,8 +3,8 @@ package com.crud.democrud.utility;
 /**
  * Clase para el manejo de las respuestas de las API
  *
- * @version 1.0.0 2022-06-08
  * @author Ricardo Ortega <tattortega.28@gmail.com>
+ * @version 1.0.0 2022-06-08
  * @since 1.0.0
  */
 public class Response {
