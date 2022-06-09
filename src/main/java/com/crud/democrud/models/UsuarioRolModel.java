@@ -1,10 +1,21 @@
 package com.crud.democrud.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 
 import javax.persistence.*;
 
+/**
+ * Entidad del Rol de Usuario - ORM
+ *
+ * @author Ricardo Ortega <tattortega.28@gmail.com>
+ * @version 1.0.0 2022-06-08
+ * @since 1.0.0
+ */
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(name = "usuario_rol")
 public class UsuarioRolModel {
 
@@ -24,37 +35,17 @@ public class UsuarioRolModel {
     @JsonBackReference
     private UsuarioModel usuarioModel;
 
-    //Constructors
-    public UsuarioRolModel() {
-    }
 
-    public UsuarioRolModel(String rol, UsuarioModel usuarioModel) {
-        this.rol = rol;
-        this.usuarioModel = usuarioModel;
-    }
-
-    //Getters and Setter
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
+    /**
+     * Constructor con parámetros
+     *
+     * @param rol          String
+     * @param usuarioModel UsuarioModel
+     */
+    public UsuarioRolModel(Long id, String rol, UsuarioModel usuarioModel) {
         this.id = id;
-    }
-
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
         this.rol = rol;
-    }
-
-    public UsuarioModel getUsuarioModel() {
-        return usuarioModel;
-    }
-
-    public void setUsuarioModel(UsuarioModel usuarioModel) {
         this.usuarioModel = usuarioModel;
     }
+
 }
